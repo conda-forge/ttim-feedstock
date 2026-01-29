@@ -10,17 +10,17 @@ source:
   sha256: 76e9111d972ff4898137dda0d91a39b380f79fc0ee257f110d808699a86dbd60
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - lmfit >=1.0
     - matplotlib-base
     - numba >=0.5
@@ -29,6 +29,8 @@ requirements:
     - scipy >=1.5
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - ttim
 
